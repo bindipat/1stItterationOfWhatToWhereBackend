@@ -1,0 +1,4 @@
+INFO  2022-03-31 20:54:59,014 37660ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/follow/SearchProfile?str=deep&loginUserId=1
+INFO  2022-03-31 20:54:59,037 37683ms APILogFilter           OnActionExecuting  - {"str":"deep","loginUserId":1}
+INFO  2022-03-31 21:27:38,511  8754ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/SignUpUser
+INFO  2022-03-31 21:27:38,597  8840ms APILogFilter           OnActionExecuting  - {"model":{"UserName":"Test User","Mobile":"9876543210","Gender":"male","ProfileImage":"test.jpg","IsEmailVerified":false,"DOB":"2022-03-31T21:27:31.1795409+05:30","Description":"Test Decription","Email":"Test@gmail.com","Password":"mypassword","LoginType":"gmail","FirebaseToken":"ZxxZxdassdgdc","DeviceType":"iphone"}}

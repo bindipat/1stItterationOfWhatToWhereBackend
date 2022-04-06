@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bc17d9165d244f5bad5820145d2062c3" Name="Diagram1">
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_follow" Width="1.5" PointX="3.375" PointY="0.75" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_post" Width="1.5" PointX="3.375" PointY="3.75" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.vw_dashboard_post" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_admin" Width="1.5" PointX="0.75" PointY="5.75" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_user" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_answer" Width="1.5" PointX="7.625" PointY="5" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_question" Width="1.5" PointX="5.375" PointY="5" />
+        <AssociationConnector Association="WhatToWhereDBModel.FK_tbl_answer_tbl_question" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_directory" Width="1.5" PointX="3" PointY="7.75" />
+        <AssociationConnector Association="WhatToWhereDBModel.FK_tbl_directory_tbl_user" />
+        <EntityTypeShape EntityType="WhatToWhereDBModel.tbl_useranswer" Width="1.5" PointX="9.875" PointY="2.75" />
+        <AssociationConnector Association="WhatToWhereDBModel.FK_tbl_useranswer_tbl_user" />
+        <AssociationConnector Association="WhatToWhereDBModel.FK_tbl_useranswer_tbl_answer" />
+        <AssociationConnector Association="WhatToWhereDBModel.FK_tbl_useranswer_tbl_question" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

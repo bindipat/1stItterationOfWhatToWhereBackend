@@ -1,0 +1,10 @@
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\bin\Release\WhereToWhere.Data.dll.config
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\bin\Release\WhereToWhere.Data.dll
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\bin\Release\WhereToWhere.Data.pdb
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\bin\Release\EntityFramework.dll
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\bin\Release\EntityFramework.xml
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\obj\Release\WhatToWhere.Data.csproj.CoreCompileInputs.cache
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\obj\Release\WhatToWhere.Data.csproj.CopyComplete
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\obj\Release\WhereToWhere.Data.dll
+D:\Work\ASP.Net\WhatToWhere\WhatToWhere.Data\obj\Release\WhereToWhere.Data.pdb
+D:\Work\ASP.net\WhatToWhere\WhatToWhere.Data\obj\Release\WhatToWhere.Data.csproj.AssemblyReference.cache

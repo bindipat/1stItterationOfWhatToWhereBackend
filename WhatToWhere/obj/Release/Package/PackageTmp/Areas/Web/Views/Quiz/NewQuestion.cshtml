@@ -1,0 +1,321 @@
+﻿@model WhereToWhere.Data.tbl_question
+@{
+    ViewBag.Title = "NewQuestion";
+
+    string title = "", cardTitle = "", answerStyle = "", answerTitle = "";
+    string singleChecked = "", multipleChecked = "", IsImageChecked = "";
+    if (Model.QueId > 0)
+    {
+        title = "Edit Question";
+        cardTitle = "Edit Question";
+        answerTitle = "Edit Answer";
+        if (Model.ChoiceType == "single")
+        {
+            singleChecked = "checked";
+        }
+        else
+        {
+            multipleChecked = "checked";
+        }
+        if (Model.IsImageQuestion)
+        {
+            IsImageChecked = "checked";
+        }
+    }
+    else
+    {
+        title = "Add Question";
+        cardTitle = "Add New Question";
+        answerStyle = "style=display:none";
+        answerTitle = "Add Answer";
+        singleChecked = "checked";
+    }
+}
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Quiz</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">Quiz</li>
+
+            <li class="breadcrumb-item active">@title</li>
+
+        </ol>
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                @cardTitle
+            </div>
+            <div class="card-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Question</label>
+                        <input type="text" class="form-control" id="txtQuestion" aria-describedby="emailHelp" placeholder="Enter your question" value="@Model.Question">
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Question Type</label>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="QType" id="rdSingle" value="single" @singleChecked>
+                            <label class="form-check-label" for="rdSingle">
+                                Single Choice
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="QType" id="rdMultiple" value="multiple" @multipleChecked>
+                            <label class="form-check-label" for="rdMultiple">
+                                Multiple Choice
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group form-check">
+                        <input type="checkbox" class="form-check-input" id="chkIsImageQue" @IsImageChecked>
+                        <label class="form-check-label" for="chkIsImageQue">Is image question?</label>
+                    </div>
+                    <input type="hidden" id="hdnQueId" value="@Model.QueId" />
+                    <input id="btnSaveQuestion" type="button" class="btn btn-primary" value="Save Question" />
+                </form>
+            </div>
+        </div>
+
+        <div id="dvAnswer" class="card mb-4" @answerStyle>
+            <div class="card-header">
+                <i class="fas fa-table mr-1"></i>
+                @answerTitle
+            </div>
+            <div class="card-body">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#answerModalCenter" style="float: right; margin-bottom:5px">
+                    Add Answer
+                </button>
+                <table id="tblAnswer" class="table table-bordered table-striped table-hover dataTable js-basic-example" width="99%">
+                    <thead>
+                        <tr>
+                            <th width="25%">Display Text</th>
+                            <th width="25%">Value</th>
+                            <th width="30%">Image</th>
+                            <th width="20%" class="text-center">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var answer in Model.tbl_answer)
+                        {
+                            <tr id="row_@answer.AnsId">
+                                <td>@answer.DisplayText</td>
+                                <td>@answer.Value</td>
+                                <td>
+                                    @if (!string.IsNullOrEmpty(answer.ImagePath))
+                                    {
+                                        <img src="@answer.ImagePath" width="100" />
+                                    }
+                                </td>
+                                <td>
+                                    <input type="button" class="btn btn-primary" value="Edit" onclick="editAnswer('@answer.DisplayText', '@answer.Value', '@answer.AnsId')" />
+                                    <input type="button" class="btn btn-danger" value="Delete" onclick="deleteAnswer('@answer.AnsId')" />
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="modal fade" id="answerModalCenter" tabindex="-1" role="dialog" aria-labelledby="answerModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Answer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Display Text</label>
+                    <input type="text" class="form-control" id="txtDisplayText">
+                </div>
+                <div class="form-group">
+                    <label>Value</label>
+                    <input type="text" class="form-control" id="txtValue">
+                </div>
+                <div class="form-group">
+                    <label>Select Image</label>
+                    <input type="file" class="form-control" style="padding:2px" id="flImage" accept="image/png, image/jpeg, image/jpg">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="hdnAnsId" value="0" />
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <input id="btnSaveAnswer" type="button" class="btn btn-primary" value="Save Answer" />
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(function () {
+        $("#btnSaveQuestion").click(function () {
+            var question = new Object();
+            question.QueId = $('#hdnQueId').val();
+            question.Question = $('#txtQuestion').val();
+            question.ChoiceType = $('input[name="QType"]:checked').val();;
+            question.IsImageQuestion = $("#chkIsImageQue").prop('checked');
+            if (question != null) {
+                $.ajax({
+                    type: "POST",
+                    url: "/web/quiz/SaveQuestion",
+                    data: JSON.stringify(question),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.issuccess) {
+                            alert("Success");
+                            $('#hdnQueId').val(response.QueId);
+                            if (question.QueId == 0) {
+                                $('#dvAnswer').show();
+                                $("#btnSaveQuestion").hide();
+                            }
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        });
+
+        $("#btnSaveAnswer").click(async function () {
+            var answer = new Object();
+            answer.AnsId = $('#hdnAnsId').val();
+            answer.QueId = $('#hdnQueId').val();
+            answer.DisplayText = $('#txtDisplayText').val();
+            answer.Value = $('#txtValue').val();
+            answer.ImageString = await GetImageString();
+            if (answer.ImageString == "##") {
+                return;
+            }
+            if (answer != null) {
+                $.ajax({
+                    type: "POST",
+                    url: "/web/quiz/SaveAnswer",
+                    data: JSON.stringify(answer),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (response) {
+                        if (response.issuccess) {
+                            alert("Success");
+                            if (answer.AnsId != 0) {
+                                $("#row_" + response.AnsId).remove();
+                            }
+                            answer.AnsId = response.AnsId;
+                            populateAnswerRow(answer);
+                            $('#answerModalCenter').modal('toggle');
+                        } else {
+                            alert(response.message);
+                        }
+                    },
+                    failure: function (response) {
+                        alert(response.responseText);
+                    },
+                    error: function (response) {
+                        alert(response.responseText);
+                    }
+                });
+            }
+        });
+    });
+
+    $("#answerModalCenter").on("hidden.bs.modal", function () {
+        clearAnswerModel();
+    });
+
+    function clearAnswerModel() {
+        $("#hdnAnsId").val('0');
+        $("#txtDisplayText").val('');
+        $("#txtValue").val('');
+    }
+
+    function populateAnswerRow(data) {
+        var row = '<tr id="row_' + data.AnsId + '"><td>' + data.DisplayText + '</td><td>' + data.Value + '</td>';
+        if (document.getElementById("flImage").files.length > 0) {
+            row += '<td> <img id="img_' + data.AnsId + '"  width="100"/></td>';
+        }
+        else {
+            row += "<td></td>";
+        }
+        row += '<td><input type = "button" class="btn btn-primary" value = "Edit" onclick="editAnswer(\'' + data.DisplayText + '\',\'' + data.Value + '\',\'' + data.AnsId + '\')"/>' +
+            '<input type = "button" class="btn btn-danger" value = "Delete"  onclick="deleteAnswer(\'' + data.AnsId + '\')"/></td></tr>';
+        $('#tblAnswer tr:last').after(row);
+
+        if (document.getElementById("flImage").files.length > 0) {
+            var image = document.getElementById('img_' + data.AnsId);
+            image.src = URL.createObjectURL(document.querySelector('#flImage').files[0]);
+        }       
+    }
+
+    function editAnswer(displayText, value, ansId) {
+        $('#answerModalCenter').modal('toggle');
+        $("#hdnAnsId").val(ansId);
+        $("#txtDisplayText").val(displayText);
+        $("#txtValue").val(value);
+    }
+
+    function deleteAnswer(AnsId) {
+        let text = "Are you sure!\nAll User data which belongs to this answer will be deleted";
+        if (confirm(text) == true) {
+            $.ajax({
+                type: "DELETE",
+                url: "/web/quiz/DeleteAnswer?AnsId=" + AnsId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.issuccess) {
+                        alert("Success");
+                        $("#row_" + AnsId).remove();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    }
+
+    const toBase64 = file => new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = error => reject(error);
+    });
+
+    async function GetImageString() {
+        if (document.getElementById("flImage").files.length == 0) {
+            return "";
+        }
+
+        const file = document.querySelector('#flImage').files[0];
+
+        if (file.size > 856542) {
+            alert("File size should be less than 800kb.");
+            return "##";
+        }
+
+        if (file.type == "image/png" || file.type == "image/jpeg" || file.type == "image/jpg") {
+            return await toBase64(file);
+        }
+        return "";
+    }
+
+</script>

@@ -1,0 +1,10 @@
+INFO  2022-03-13 11:39:57,465 18703ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/GetUserDataByUserId?UserId=1
+INFO  2022-03-13 11:39:57,548 18786ms APILogFilter           OnActionExecuting  - {"UserId":1}
+INFO  2022-03-13 11:40:26,850 48088ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/GetUserDataByUserId?UserId=2
+INFO  2022-03-13 11:40:26,852 48090ms APILogFilter           OnActionExecuting  - {"UserId":2}
+INFO  2022-03-13 11:41:06,537 87775ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/follow/SearchProfile?str=daxa&loginUserId=1
+INFO  2022-03-13 11:41:06,538 87776ms APILogFilter           OnActionExecuting  - {"str":"daxa","loginUserId":1}
+INFO  2022-03-13 11:41:23,395 104633ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/follow/SearchProfile?str=daksha&loginUserId=1
+INFO  2022-03-13 11:41:23,396 104634ms APILogFilter           OnActionExecuting  - {"str":"daksha","loginUserId":1}
+INFO  2022-03-13 11:42:02,299 143536ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/follow/GetFollowerList?UserId=2
+INFO  2022-03-13 11:42:02,299 143537ms APILogFilter           OnActionExecuting  - {"UserId":2}

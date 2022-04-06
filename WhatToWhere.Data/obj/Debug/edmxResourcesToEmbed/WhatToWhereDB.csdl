@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WhatToWhereDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="WhatToWhereDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbl_follow" EntityType="WhatToWhereDBModel.tbl_follow" />
+    <EntitySet Name="tbl_post" EntityType="WhatToWhereDBModel.tbl_post" />
+    <EntitySet Name="vw_dashboard_post" EntityType="WhatToWhereDBModel.vw_dashboard_post" />
+    <EntitySet Name="tbl_admin" EntityType="WhatToWhereDBModel.tbl_admin" />
+    <EntitySet Name="tbl_user" EntityType="WhatToWhereDBModel.tbl_user" />
+    <EntitySet Name="tbl_answer" EntityType="WhatToWhereDBModel.tbl_answer" />
+    <EntitySet Name="tbl_question" EntityType="WhatToWhereDBModel.tbl_question" />
+    <AssociationSet Name="FK_tbl_answer_tbl_question" Association="WhatToWhereDBModel.FK_tbl_answer_tbl_question">
+      <End Role="tbl_question" EntitySet="tbl_question" />
+      <End Role="tbl_answer" EntitySet="tbl_answer" />
+    </AssociationSet>
+    <EntitySet Name="tbl_directory" EntityType="WhatToWhereDBModel.tbl_directory" />
+    <AssociationSet Name="FK_tbl_directory_tbl_user" Association="WhatToWhereDBModel.FK_tbl_directory_tbl_user">
+      <End Role="tbl_user" EntitySet="tbl_user" />
+      <End Role="tbl_directory" EntitySet="tbl_directory" />
+    </AssociationSet>
+    <EntitySet Name="tbl_useranswer" EntityType="WhatToWhereDBModel.tbl_useranswer" />
+    <AssociationSet Name="FK_tbl_useranswer_tbl_user" Association="WhatToWhereDBModel.FK_tbl_useranswer_tbl_user">
+      <End Role="tbl_user" EntitySet="tbl_user" />
+      <End Role="tbl_useranswer" EntitySet="tbl_useranswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_useranswer_tbl_answer" Association="WhatToWhereDBModel.FK_tbl_useranswer_tbl_answer">
+      <End Role="tbl_answer" EntitySet="tbl_answer" />
+      <End Role="tbl_useranswer" EntitySet="tbl_useranswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_useranswer_tbl_question" Association="WhatToWhereDBModel.FK_tbl_useranswer_tbl_question">
+      <End Role="tbl_question" EntitySet="tbl_question" />
+      <End Role="tbl_useranswer" EntitySet="tbl_useranswer" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tbl_follow">
+    <Key>
+      <PropertyRef Name="FollowId" />
+    </Key>
+    <Property Name="FollowId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="FollowingId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_post">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ShareType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LikeCount" Type="Int32" Nullable="false" />
+    <Property Name="DislikeCount" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vw_dashboard_post">
+    <Key>
+      <PropertyRef Name="PostId" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="ImagePath" />
+      <PropertyRef Name="ShareType" />
+      <PropertyRef Name="LikeCount" />
+      <PropertyRef Name="DislikeCount" />
+      <PropertyRef Name="CreatedDate" />
+      <PropertyRef Name="CreatedBy" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="PostId" Type="Int64" Nullable="false" />
+    <Property Name="Description" Type="String" Nullable="false" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="ShareType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="LikeCount" Type="Int32" Nullable="false" />
+    <Property Name="DislikeCount" Type="Int32" Nullable="false" />
+    <Property Name="CreatedDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedBy" Type="Int64" Nullable="false" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="ProfileImage" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="LoginType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="IsEmailVerified" Type="Boolean" Nullable="false" />
+    <Property Name="FirebaseToken" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="DeviceType" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="DOB" Type="DateTime" Precision="3" />
+    <Property Name="Mobile" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Pronouns" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_directory" Relationship="WhatToWhereDBModel.FK_tbl_directory_tbl_user" FromRole="tbl_user" ToRole="tbl_directory" />
+    <NavigationProperty Name="tbl_useranswer" Relationship="WhatToWhereDBModel.FK_tbl_useranswer_tbl_user" FromRole="tbl_user" ToRole="tbl_useranswer" />
+  </EntityType>
+  <EntityType Name="tbl_answer">
+    <Key>
+      <PropertyRef Name="AnsId" />
+    </Key>
+    <Property Name="AnsId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="QueId" Type="Int32" Nullable="false" />
+    <Property Name="DisplayText" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Value" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ImagePath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_question" Relationship="WhatToWhereDBModel.FK_tbl_answer_tbl_question" FromRole="tbl_answer" ToRole="tbl_question" />
+    <NavigationProperty Name="tbl_useranswer" Relationship="WhatToWhereDBModel.FK_tbl_useranswer_tbl_answer" FromRole="tbl_answer" ToRole="tbl_useranswer" />
+  </EntityType>
+  <EntityType Name="tbl_question">
+    <Key>
+      <PropertyRef Name="QueId" />
+    </Key>
+    <Property Name="QueId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ChoiceType" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="IsImageQuestion" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="tbl_answer" Relationship="WhatToWhereDBModel.FK_tbl_answer_tbl_question" FromRole="tbl_question" ToRole="tbl_answer" />
+    <NavigationProperty Name="tbl_useranswer" Relationship="WhatToWhereDBModel.FK_tbl_useranswer_tbl_question" FromRole="tbl_question" ToRole="tbl_useranswer" />
+  </EntityType>
+  <Association Name="FK_tbl_answer_tbl_question">
+    <End Type="WhatToWhereDBModel.tbl_question" Role="tbl_question" Multiplicity="1" />
+    <End Type="WhatToWhereDBModel.tbl_answer" Role="tbl_answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_question">
+        <PropertyRef Name="QueId" />
+      </Principal>
+      <Dependent Role="tbl_answer">
+        <PropertyRef Name="QueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_directory">
+    <Key>
+      <PropertyRef Name="DirId" />
+    </Key>
+    <Property Name="DirId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ParentDirId" Type="Int64" Nullable="false" />
+    <Property Name="DirType" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <NavigationProperty Name="tbl_user" Relationship="WhatToWhereDBModel.FK_tbl_directory_tbl_user" FromRole="tbl_directory" ToRole="tbl_user" />
+  </EntityType>
+  <Association Name="FK_tbl_directory_tbl_user">
+    <End Type="WhatToWhereDBModel.tbl_user" Role="tbl_user" Multiplicity="1" />
+    <End Type="WhatToWhereDBModel.tbl_directory" Role="tbl_directory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_directory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tbl_useranswer">
+    <Key>
+      <PropertyRef Name="UserAnsId" />
+    </Key>
+    <Property Name="UserAnsId" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserId" Type="Int64" Nullable="false" />
+    <Property Name="QueId" Type="Int32" Nullable="false" />
+    <Property Name="AnsId" Type="Int32" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tbl_user" Relationship="WhatToWhereDBModel.FK_tbl_useranswer_tbl_user" FromRole="tbl_useranswer" ToRole="tbl_user" />
+    <NavigationProperty Name="tbl_answer" Relationship="WhatToWhereDBModel.FK_tbl_useranswer_tbl_answer" FromRole="tbl_useranswer" ToRole="tbl_answer" />
+    <NavigationProperty Name="tbl_question" Relationship="WhatToWhereDBModel.FK_tbl_useranswer_tbl_question" FromRole="tbl_useranswer" ToRole="tbl_question" />
+  </EntityType>
+  <Association Name="FK_tbl_useranswer_tbl_user">
+    <End Type="WhatToWhereDBModel.tbl_user" Role="tbl_user" Multiplicity="1" />
+    <End Type="WhatToWhereDBModel.tbl_useranswer" Role="tbl_useranswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_useranswer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_useranswer_tbl_answer">
+    <End Type="WhatToWhereDBModel.tbl_answer" Role="tbl_answer" Multiplicity="1" />
+    <End Type="WhatToWhereDBModel.tbl_useranswer" Role="tbl_useranswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_answer">
+        <PropertyRef Name="AnsId" />
+      </Principal>
+      <Dependent Role="tbl_useranswer">
+        <PropertyRef Name="AnsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_useranswer_tbl_question">
+    <End Type="WhatToWhereDBModel.tbl_question" Role="tbl_question" Multiplicity="1" />
+    <End Type="WhatToWhereDBModel.tbl_useranswer" Role="tbl_useranswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_question">
+        <PropertyRef Name="QueId" />
+      </Principal>
+      <Dependent Role="tbl_useranswer">
+        <PropertyRef Name="QueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

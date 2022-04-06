@@ -1,0 +1,16 @@
+INFO  2022-03-26 17:56:40,108 10770ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/EditUserProfile
+INFO  2022-03-26 17:56:40,141 10803ms APILogFilter           OnActionExecuting  - {"model":{"UserId":1,"UserName":"Test User","Gender":"male","Description":"Test Decription","Pronouns":"he","Mobile":"9876543210","DOB":"2022-03-26T17:56:32.832389+05:30"}}
+INFO  2022-03-26 17:57:30,699 61361ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/EditUserProfile
+INFO  2022-03-26 17:57:30,700 61362ms APILogFilter           OnActionExecuting  - {"model":{"UserId":1,"UserName":"Test User","Gender":"male","Description":"Test Decription","Pronouns":"he","Mobile":"9876543210","DOB":"2022-03-26T17:56:32.832389+05:30"}}
+INFO  2022-03-26 17:58:05,656 96318ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/EditUserProfile
+INFO  2022-03-26 17:58:05,656 96318ms APILogFilter           OnActionExecuting  - {"model":{"UserId":1,"UserName":"Test User","Gender":"male","Description":"Test Decription","Pronouns":"he","Mobile":"9876543210","DOB":"2022-03-26T17:56:32.832389+05:30"}}
+INFO  2022-03-26 17:59:40,447 191109ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/EditUserProfile
+INFO  2022-03-26 17:59:40,448 191110ms APILogFilter           OnActionExecuting  - {"model":{"UserId":1,"UserName":"Test User","Gender":"male","Description":"Test Decription","Pronouns":"he","Mobile":"9876543210","DOB":"2022-03-26T17:56:32.832389+05:30"}}
+INFO  2022-03-26 18:01:03,592 11042ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/EditUserProfile
+INFO  2022-03-26 18:01:03,606 11056ms APILogFilter           OnActionExecuting  - {"model":{"UserId":1,"UserName":"Test User","Gender":"male","Description":"Test Decription","Pronouns":"he","Mobile":"9876543210","DOB":"2022-03-26T18:00:57.7740891+05:30"}}
+INFO  2022-03-26 19:11:25,443  9424ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/EditUserProfile
+INFO  2022-03-26 19:11:25,604  9585ms APILogFilter           OnActionExecuting  - {"model":{"UserId":1,"UserName":"Test User","Gender":"male","Description":"Test Decription","Pronouns":"he","Mobile":"9876543210","DOB":"2022-03-26T19:11:18.9642705+05:30"}}
+INFO  2022-03-26 19:12:58,814 102796ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/follow/SearchProfile?str=dakash&loginUserId=1
+INFO  2022-03-26 19:12:58,815 102797ms APILogFilter           OnActionExecuting  - {"str":"dakash","loginUserId":1}
+INFO  2022-03-26 19:13:06,591 110572ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/follow/SearchProfile?str=daksha&loginUserId=1
+INFO  2022-03-26 19:13:06,592 110573ms APILogFilter           OnActionExecuting  - {"str":"daksha","loginUserId":1}

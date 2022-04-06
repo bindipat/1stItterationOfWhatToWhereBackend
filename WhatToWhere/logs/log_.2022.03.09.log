@@ -1,0 +1,2 @@
+INFO  2022-03-09 20:44:29,372 31496ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/GetUserDataByUserId?UserId=23
+INFO  2022-03-09 20:44:29,421 31545ms APILogFilter           OnActionExecuting  - {"UserId":23}

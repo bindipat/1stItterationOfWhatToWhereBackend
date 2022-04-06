@@ -1,0 +1,218 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WhatToWhereDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbl_admin">
+    <Key>
+      <PropertyRef Name="AdminId" />
+    </Key>
+    <Property Name="AdminId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_follow">
+    <Key>
+      <PropertyRef Name="FollowId" />
+    </Key>
+    <Property Name="FollowId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="FollowingId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_post">
+    <Key>
+      <PropertyRef Name="PostId" />
+    </Key>
+    <Property Name="PostId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1024" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ShareType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LikeCount" Type="int" Nullable="false" />
+    <Property Name="DislikeCount" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_user">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="ProfileImage" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="LoginType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="IsEmailVerified" Type="bit" Nullable="false" />
+    <Property Name="FirebaseToken" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="DeviceType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="DOB" Type="datetime" />
+    <Property Name="Mobile" Type="nchar" MaxLength="15" />
+    <Property Name="Description" Type="nvarchar" MaxLength="500" />
+    <Property Name="Pronouns" Type="nvarchar" MaxLength="5" />
+  </EntityType>
+  <EntityType Name="tbl_answer">
+    <Key>
+      <PropertyRef Name="AnsId" />
+    </Key>
+    <Property Name="AnsId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QueId" Type="int" Nullable="false" />
+    <Property Name="DisplayText" Type="nvarchar" MaxLength="50" />
+    <Property Name="Value" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="tbl_directory">
+    <Key>
+      <PropertyRef Name="DirId" />
+    </Key>
+    <Property Name="DirId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ParentDirId" Type="bigint" Nullable="false" />
+    <Property Name="DirType" Type="char" MaxLength="1" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_question">
+    <Key>
+      <PropertyRef Name="QueId" />
+    </Key>
+    <Property Name="QueId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ChoiceType" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="IsImageQuestion" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tbl_useranswer">
+    <Key>
+      <PropertyRef Name="UserAnsId" />
+    </Key>
+    <Property Name="UserAnsId" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+    <Property Name="QueId" Type="int" Nullable="false" />
+    <Property Name="AnsId" Type="int" Nullable="false" />
+    <Property Name="Comment" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'WhatToWhereDB.whattowhere_dbuser.vw_dashboard_post' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vw_dashboard_post">
+    <Key>
+      <PropertyRef Name="PostId" />
+      <PropertyRef Name="Description" />
+      <PropertyRef Name="ImagePath" />
+      <PropertyRef Name="ShareType" />
+      <PropertyRef Name="LikeCount" />
+      <PropertyRef Name="DislikeCount" />
+      <PropertyRef Name="CreatedDate" />
+      <PropertyRef Name="CreatedBy" />
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="PostId" Type="bigint" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1024" Nullable="false" />
+    <Property Name="ImagePath" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="ShareType" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="LikeCount" Type="int" Nullable="false" />
+    <Property Name="DislikeCount" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="CreatedBy" Type="bigint" Nullable="false" />
+    <Property Name="UserId" Type="bigint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_tbl_answer_tbl_question">
+    <End Role="tbl_question" Type="Self.tbl_question" Multiplicity="1" />
+    <End Role="tbl_answer" Type="Self.tbl_answer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_question">
+        <PropertyRef Name="QueId" />
+      </Principal>
+      <Dependent Role="tbl_answer">
+        <PropertyRef Name="QueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_directory_tbl_user">
+    <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1" />
+    <End Role="tbl_directory" Type="Self.tbl_directory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_directory">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_useranswer_tbl_answer">
+    <End Role="tbl_answer" Type="Self.tbl_answer" Multiplicity="1" />
+    <End Role="tbl_useranswer" Type="Self.tbl_useranswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_answer">
+        <PropertyRef Name="AnsId" />
+      </Principal>
+      <Dependent Role="tbl_useranswer">
+        <PropertyRef Name="AnsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_useranswer_tbl_question">
+    <End Role="tbl_question" Type="Self.tbl_question" Multiplicity="1" />
+    <End Role="tbl_useranswer" Type="Self.tbl_useranswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_question">
+        <PropertyRef Name="QueId" />
+      </Principal>
+      <Dependent Role="tbl_useranswer">
+        <PropertyRef Name="QueId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbl_useranswer_tbl_user">
+    <End Role="tbl_user" Type="Self.tbl_user" Multiplicity="1" />
+    <End Role="tbl_useranswer" Type="Self.tbl_useranswer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbl_user">
+        <PropertyRef Name="UserId" />
+      </Principal>
+      <Dependent Role="tbl_useranswer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="WhatToWhereDBModelStoreContainer">
+    <EntitySet Name="tbl_admin" EntityType="Self.tbl_admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_follow" EntityType="Self.tbl_follow" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_post" EntityType="Self.tbl_post" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_user" EntityType="Self.tbl_user" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbl_answer" EntityType="Self.tbl_answer" Schema="whattowhere_dbuser" store:Type="Tables" />
+    <EntitySet Name="tbl_directory" EntityType="Self.tbl_directory" Schema="whattowhere_dbuser" store:Type="Tables" />
+    <EntitySet Name="tbl_question" EntityType="Self.tbl_question" Schema="whattowhere_dbuser" store:Type="Tables" />
+    <EntitySet Name="tbl_useranswer" EntityType="Self.tbl_useranswer" Schema="whattowhere_dbuser" store:Type="Tables" />
+    <EntitySet Name="vw_dashboard_post" EntityType="Self.vw_dashboard_post" store:Type="Views" store:Schema="whattowhere_dbuser">
+      <DefiningQuery>SELECT 
+[vw_dashboard_post].[PostId] AS [PostId], 
+[vw_dashboard_post].[Description] AS [Description], 
+[vw_dashboard_post].[ImagePath] AS [ImagePath], 
+[vw_dashboard_post].[ShareType] AS [ShareType], 
+[vw_dashboard_post].[LikeCount] AS [LikeCount], 
+[vw_dashboard_post].[DislikeCount] AS [DislikeCount], 
+[vw_dashboard_post].[CreatedDate] AS [CreatedDate], 
+[vw_dashboard_post].[CreatedBy] AS [CreatedBy], 
+[vw_dashboard_post].[UserId] AS [UserId]
+FROM [whattowhere_dbuser].[vw_dashboard_post] AS [vw_dashboard_post]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tbl_answer_tbl_question" Association="Self.FK_tbl_answer_tbl_question">
+      <End Role="tbl_question" EntitySet="tbl_question" />
+      <End Role="tbl_answer" EntitySet="tbl_answer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_directory_tbl_user" Association="Self.FK_tbl_directory_tbl_user">
+      <End Role="tbl_user" EntitySet="tbl_user" />
+      <End Role="tbl_directory" EntitySet="tbl_directory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_useranswer_tbl_answer" Association="Self.FK_tbl_useranswer_tbl_answer">
+      <End Role="tbl_answer" EntitySet="tbl_answer" />
+      <End Role="tbl_useranswer" EntitySet="tbl_useranswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_useranswer_tbl_question" Association="Self.FK_tbl_useranswer_tbl_question">
+      <End Role="tbl_question" EntitySet="tbl_question" />
+      <End Role="tbl_useranswer" EntitySet="tbl_useranswer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbl_useranswer_tbl_user" Association="Self.FK_tbl_useranswer_tbl_user">
+      <End Role="tbl_user" EntitySet="tbl_user" />
+      <End Role="tbl_useranswer" EntitySet="tbl_useranswer" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,4 @@
+DEBUG 2021-04-04 10:37:42,666 23917ms APILogFilter           OnActionExecuting  - {"UserId":2}
+INFO  2021-04-04 10:40:39,441 17255ms APILogFilter           OnActionExecuting  - {"model":{"Email":"test@gmail.com","Password":"t","LoginType":"normal","FirebaseToken":"test","DeviceType":"iphone"}}
+INFO  2021-04-04 10:43:29,925 13308ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/SignInUser
+INFO  2021-04-04 10:43:29,967 13350ms APILogFilter           OnActionExecuting  - {"model":{"Email":"test@gmail.com","Password":"t","LoginType":"normal","FirebaseToken":"test","DeviceType":"iphone"}}

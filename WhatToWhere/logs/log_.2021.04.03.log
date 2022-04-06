@@ -1,0 +1,2 @@
+DEBUG 2021-04-03 11:39:02,891 94966ms LogFilter              OnActionExecuting  - {}
+DEBUG 2021-04-03 11:41:07,338 219413ms LogFilter              OnActionExecuting  - {"Email":"admin","Password":"admin"}

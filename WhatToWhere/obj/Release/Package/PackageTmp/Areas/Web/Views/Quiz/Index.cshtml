@@ -1,0 +1,119 @@
+﻿@model List<WhereToWhere.Data.tbl_question>
+@{
+    ViewBag.Title = "Quiz";
+}
+
+<main>
+    <div class="container-fluid">
+        <h1 class="mt-4">Quiz</h1>
+        <ol class="breadcrumb mb-4">
+            <li class="breadcrumb-item">Quiz</li>
+            <li class="breadcrumb-item active">List</li>
+        </ol>
+        <div style="width:100%;float:left">
+            <a class="btn btn-primary" href="/web/quiz/newquestion" style="float: right; margin-bottom:5px;">New Question</a>
+        </div>
+
+        @foreach (var item in Model)
+        {
+            <div id="row_@item.QueId">
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <i class="fas fa-question mr-1"></i>
+                        @item.Question
+                        <div class="float-right">
+                            @if (item.ChoiceType == "single")
+                            {
+                                <h6> <span class="badge bg-success">Single Choice Question</span></h6>
+                            }
+                            else
+                            {
+                                <h6>
+                                    <span class="badge bg-success">Multiple Choice Question</span>
+                                </h6>
+                            }
+                            @if (item.IsImageQuestion)
+                            {
+                                <h6>
+                                    <span class="badge bg-warning text-dark">Image Question</span>
+                                </h6>
+                            }
+
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div style="width:100%">
+                            @if (item.tbl_answer != null && item.tbl_answer.Count > 0)
+                            {
+                                foreach (var ans in item.tbl_answer)
+                                {
+                                    <span class="badge answer rounded-pill bg-primary">@ans.DisplayText</span>
+                                    if (!string.IsNullOrEmpty(ans.ImagePath))
+                                    {
+                                        <img src="@ans.ImagePath"  width="100"/>
+                                    }
+                                }
+                            }
+                        </div>
+                        @*<h5 class="card-title">Card title</h5>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
+                        <div class="float-right">
+                            <a href="@Url.Action("NewQuestion","Quiz",new {QueId=item.QueId })" class="btn btn-sm btn-primary">Edit</a>
+                            <a href="#" class="btn btn-sm btn-danger" onclick="deleteQuestion('@item.QueId')">Delete</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+</main>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    function deleteQuestion(QueId) {
+        let text = "Are you sure!\nAll User data which belongs to this question will be deleted";
+        if (confirm(text) == true) {
+            $.ajax({
+                type: "DELETE",
+                url: "/web/quiz/DeleteQuestion?QueId=" + QueId,
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (response) {
+                    if (response.issuccess) {
+                        alert("Success");
+                        $("#row_" + QueId).remove();
+                    } else {
+                        alert(response.message);
+                    }
+                },
+                failure: function (response) {
+                    alert(response.responseText);
+                },
+                error: function (response) {
+                    alert(response.responseText);
+                }
+            });
+        }
+    }
+</script>

@@ -1,0 +1,6 @@
+INFO  2022-03-15 11:37:46,982  8252ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/GetUserDataByUserId?UserId=2
+INFO  2022-03-15 11:37:47,043  8313ms APILogFilter           OnActionExecuting  - {"UserId":2}
+INFO  2022-03-15 11:38:16,835 38105ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/GetUserDataByUserId?UserId=2
+INFO  2022-03-15 11:38:16,836 38106ms APILogFilter           OnActionExecuting  - {"UserId":2}
+INFO  2022-03-15 11:49:24,799  8320ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/GetUserDataByUserId?UserId=2
+INFO  2022-03-15 11:49:24,896  8417ms APILogFilter           OnActionExecuting  - {"UserId":2}

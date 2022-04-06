@@ -1,0 +1,2 @@
+INFO  2022-03-24 16:10:43,918 28745ms APILogFilter           OnActionExecuting  - https://localhost:44368/api/user/SignUpUser
+INFO  2022-03-24 16:10:43,965 28793ms APILogFilter           OnActionExecuting  - {"model":{"UserName":"Test User","Mobile":"9876543210","Gender":"male","ProfileImage":"test.jpg","IsEmailVerified":false,"DOB":"2022-03-24T16:10:16.0857217+05:30","Description":"Test Decription","Email":"Test@gmail.com","Password":"mypassword","LoginType":"gmail","FirebaseToken":"ZxxZxdassdgdc","DeviceType":"iphone"}}
